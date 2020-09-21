@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <p><img src="{{ ebook_post.image.url }}" alt="{{ ebook_post.title }}" id="ebook_id"></p>
+                <p class="font-weight-bold">
+                <h4>{{ ebook_post.title }}</h4>
+                </p>
+                <p class="font-italic">
+                <h5>by {{ ebook_post.author }}</h5>
+                </p>
+                <p class="text-justify font-weight-light">{{ ebook_post.description|safe }}</p>
+                <p>{{ ebook_post.date_updated }}</p>
+                {% if user.is_authenticated %}
+
+                <a href="{{ ebook_post.pdf.url }}" class="btn btn-primary">Download</a>
+                {% if user.is_superuser %}
+                <a href="{% url 'edit' ebook_post.slug %}" class="btn btn-info">Edit</a>
+                {% endif %}
+
+                <!-- {% if ebook_post.likes.all|length < 1 %}
+                <a href="{% url 'like' ebook_post.slug %}" class="btn btn-secondary">Like</a>
+                {% endif %} -->
+
+                {% if request.user in ebook_post.likes.all %}
+                <a href="{% url 'like' ebook_post.slug %}" class="btn btn-secondary">Dislike</a>
+                {% else %}
+                <a href="{% url 'like' ebook_post.slug %}" class="btn btn-secondary">Like</a>
+                {% endif %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Favourites</h2>
+<hr>
+{% if ebook_posts %}
+<div class="card-deck">
+    {% for post in ebook_posts %}
+    {% include 'snippets/ebook_post_snippet.html' with ebook_post=post %}
+    {% endfor %}
+</div>
+{% else %}
+<div class="container">
+    {% include 'snippets/ebook_post_snippet.html' with query=query %}
+</div>
+{% endif %}
+<!-- ebook feeds end -->
+<!-- pagination -->
+<hr>
+<div class="container">
+    {% include 'snippets/ebook_post_pagination.html' with ebook_posts=ebook_posts %}
+</div>
+<!-- pagination end -->
+
+
+{% endblock %}

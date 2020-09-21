@@ -1,0 +1,26 @@
+{% if ebook_post %}
+
+<div class="card border-dark col-md-3 col-sm-4 col-lg-3">
+	<p></p>
+	<img src="{{ ebook_post.image.url }}" class="card-img-top" alt="{{ ebook_post.title }}" id="ebook_snippet">
+	<h5 class="font-weight-bold">{{ ebook_post.title }}</h5>
+	<p class="font-italic">by<br>{{ ebook_post.author }}</p>
+	<p><a class="btn btn-secondary" href="{% url 'detail' ebook_post.slug %}" role="button">View details
+			&raquo;</a>
+		<strong class="float-right">{{ ebook_post.likes.count }} likes</strong>
+	</p>
+	<p class="card-text"><small class="text-muted">Uploaded: {{ ebook_post.date_updated }}</small></p>
+</div>
+
+
+{% else %}
+
+<div class="card m-auto">
+	<div class="card-body mt-2 mb-2">
+		<h2 class="card-title">No results</h2>
+		<p class="card-text">There were no results matching the search: "{{query}}"</p>
+	</div>
+</div>
+
+
+{% endif %}
