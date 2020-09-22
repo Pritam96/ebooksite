@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-<!-- carousel -->
-{% if ebook_posts.next_page_number == 2 %}
+<!-- Main jumbotron -->
+<!-- <div class="jumbotron">
+    <blockquote class="blockquote text-center">
+        <p class="mb-0">“Books are the quietest and most constant of friends. <br>
+            They are the most accessible and wisest of counselors, and the most patient of teachers.”</p>
+        <footer class="blockquote-footer">Charles W. Eliot</footer>
+    </blockquote>
+</div> -->
+<!-- Main jumbotron end -->
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -63,30 +72,6 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-{% endif %}
-<!-- carousel end -->
-
-
-<!-- ebook feeds -->
-{% if ebook_posts %}
-<div class="card-deck">
-    {% for post in ebook_posts %}
-    {% include 'snippets/ebook_post_snippet.html' with ebook_post=post %}
-    {% endfor %}
-</div>
-{% else %}
-<div class="container">
-    {% include 'snippets/ebook_post_snippet.html' with query=query %}
-</div>
-{% endif %}
-<!-- ebook feeds end -->
-<!-- pagination -->
-<hr>
-<div class="container">
-    {% include 'snippets/ebook_post_pagination.html' with ebook_posts=ebook_posts %}
-</div>
-<!-- pagination end -->
-
 
 <script>
     $('.carousel').carousel({

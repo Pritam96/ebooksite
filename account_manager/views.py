@@ -7,10 +7,12 @@ from account_manager.models import Account
 # Create your views here.
 
 
+# def home(request):
+#     total_users = Account.objects.count()
+#     return render(request, 'home.html', {'total': total_users})
+
 
 def signup(request):
-    if request.user.is_authenticated:
-        return redirect('ebook_posts')
     context = {}
     if request.POST:
         form = SignUpForm(request.POST)
@@ -31,8 +33,6 @@ def signup(request):
 
 
 def login(request):
-    if request.user.is_authenticated:
-        return redirect('ebook_posts')
     context = {}
     user = request.user
     if user.is_authenticated:
